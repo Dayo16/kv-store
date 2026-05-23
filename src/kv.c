@@ -81,3 +81,14 @@ kv_t *kv_init(size_t capacity) {
 
     return table;
 }
+
+char* kv_get(kv_t* db, const char* key){
+    return NULL;
+}
+
+int kv_delete(kv_t* db, const char* key){
+    return -1;
+}
+
+void kv_free(kv_t* db) {
+}
