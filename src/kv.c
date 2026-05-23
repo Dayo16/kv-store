@@ -65,7 +65,7 @@ int kv_put(kv_t* db, const char* key, const char* value ) {
     return -2;
 }
 
-kv_t *kv_init(size_t capacity) {
+kv_t* kv_init(size_t capacity) {
     if (capacity == 0 ) return NULL;
 
     kv_t* table = malloc(sizeof(kv_t));
