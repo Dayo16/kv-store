@@ -42,7 +42,7 @@ int kv_put(kv_t* db, const char* key, const char* value ) {
             char* newval = strdup(value); // strdup allocates new memory for the value, so we can safely free the old value
             if (!newval) return -1; 
             entry->value = newval;
-            return real_idx;
+            return 0;
         }
 
         // If the key doesn't exist, insert a new entry
@@ -57,7 +57,7 @@ int kv_put(kv_t* db, const char* key, const char* value ) {
             entry->key = newkey;
             entry->value = newval;
             db->count++;
-            return real_idx;
+            return 0;
         }
     }
 
