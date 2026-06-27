@@ -10,10 +10,10 @@ int main() {
     kv_put (table, "key2", "value2");
     kv_put (table, "key3", "value2");
 
-    for (int i = 0; i < table->capacity; i++) {
-        kv_entry_t entry = table->entries[i];
-        if (!entry.key) continue; // Skip empty entries
-        printf("Entry [%d]: key=%s, value=%s\n", i, entry.key, entry.value);
-    }
+    char *val = kv_get(table, "key1");
+    char *val1 = kv_get(table, "key2");
+    char *val2 = kv_get(table, "keyx");
+
+    printf("%s %s %s\n", val, val1, val2);
     return 0;
 }
