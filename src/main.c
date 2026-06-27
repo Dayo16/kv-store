@@ -15,5 +15,10 @@ int main() {
     char *val2 = kv_get(table, "keyx");
 
     printf("%s %s %s\n", val, val1, val2);
+
+    kv_delete(table, "key1");
+    val = kv_get(table, "key1");
+    printf("%s %s %s\n", val, val1, val2);
+   
     return 0;
 }
