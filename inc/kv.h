@@ -19,4 +19,4 @@ kv_t  *kv_init(size_t capacity);
 int    kv_put(kv_t *db, char *key, char *value);
 char  *kv_get(kv_t *db, char *key);
 int    kv_delete(kv_t *db, char *key);
-void   kv_free(kv_t *db);
+int   kv_free(kv_t *db);

@@ -40,7 +40,8 @@ int kv_put(kv_t* db, char* key, char* value ) {
              !strcmp(entry->key, key)
             ) {
             char* newval = strdup(value); // strdup allocates new memory for the value, so we can safely free the old value
-            if (!newval) return -1; 
+            if (!newval) return -1;
+            free(entry->value); 
             entry->value = newval;
             return 0;
         }
@@ -148,5 +149,26 @@ int kv_delete(kv_t* db, char* key){
     return -1;
 }
 
-void kv_free(kv_t* db) {
+// fn kv_free
+// params:
+// - db: a pointer to the db
+// returns: 0 on success, -1 on failure
+int kv_free(kv_t* db) {
+    if (!db) return -1;
+
+    for (int i = 0; i < db->capacity - 1; i++) {
+        kv_entry_t *entry = &db->entries[i];
+
+        if (entry->key && entry->key != (void*)TOMBSTONE){
+            free(entry->key);
+            free(entry->value);
+            entry->key = NULL;
+            entry->value = NULL;
+            db->count--;
+        }
+    }
+    free(db->entries);
+    free(db);
+
+    return 0;
 }
